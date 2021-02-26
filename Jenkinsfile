@@ -18,11 +18,6 @@ pipeline{
                 sh 'mvn compile'
             }
         }
-        stage('maven tests'){
-            steps{
-                    sh 'mvn test'
-            }
-        }
 
         stage('sonar analysis'){
             steps{
