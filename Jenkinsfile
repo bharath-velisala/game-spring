@@ -66,8 +66,8 @@ pipeline{
                ]
               }"""
       )
-       sshagent(['ed7c8a08-d943-4a66-a42c-e5e719bdeb9d']){
-                    sh 'scp -r /var/jenkins_home/workspace/game-spring/artifacts/*.jar ubuntu@65.0.20.153:/home/ubuntu/artifacts'
+       sshagent(['ed975733-0480-4c23-a8f3-4f0683ed2a43']){
+                    sh 'scp -r /var/jenkins_home/workspace/game-spring/artifacts/*.jar ubuntu@52.66.96.236:/home/ubuntu/artifacts'
         }
             mail bcc: '', body: 'build was successful ', cc: '', from: '', replyTo: '', subject: 'build successful', to: 'bharath.velisala@gmail.com'
 
