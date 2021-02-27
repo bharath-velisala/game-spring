@@ -67,7 +67,7 @@ pipeline{
               }"""
       )
        sshagent(['ed975733-0480-4c23-a8f3-4f0683ed2a43']){
-                    sh 'scp -r /var/jenkins_home/workspace/game-spring/artifacts/*.jar StrictHostKeyChecking=no ubuntu@13.233.84.243:/home/ubuntu/artifacts'
+                    sh 'scp -r /var/jenkins_home/workspace/game-spring/artifacts/*.jar ssh -o StrictHostKeyChecking=no ubuntu@13.233.84.243:/home/ubuntu/artifacts'
         }
             mail bcc: '', body: 'build was successful ', cc: '', from: '', replyTo: '', subject: 'build successful', to: 'bharath.velisala@gmail.com'
 
