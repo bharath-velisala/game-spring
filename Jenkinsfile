@@ -7,7 +7,7 @@ pipeline{
         maven 'maven'
     }
 
-    /*stages{
+    stages{
         stage('maven clean'){
             steps{
                 sh 'mvn clean'
@@ -19,7 +19,7 @@ pipeline{
             }
         }
 
-        stage('sonar analysis'){
+        /*stage('sonar analysis'){
             steps{
                 withSonarQubeEnv('SonarQube'){
                     withMaven(maven:'maven'){
@@ -28,14 +28,14 @@ pipeline{
                 }
             }
 
-        }
+        }*/
         stage('maven package'){
             steps{
                 sh 'mvn package'
             }
         }
 
-    }*/
+    }
 
     post{
       success{
