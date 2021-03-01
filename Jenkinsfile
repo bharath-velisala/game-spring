@@ -71,13 +71,10 @@ pipeline{
                ]
               }"""
       )
-      stage('Deploy to S3 Bucket'){
-                steps{
-                    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: '889f1bce-4edc-48a1-9f8a-d38a7ffb6af0', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-                        s3Upload(file:'/var/jenkins_home/workspace/game-spring/artifacts/game-0.0.1-SNAPSHOT.jar', bucket:'bharathvelisala', path:'sampleFile/game-0.0.1-SNAPSHOT.jar')
-}
-                }
-            }      
+      withAWS(region:'ap-south-1',credentials:'889f1bce-4edc-48a1-9f8a-d38a7ffb6af0') {
+                    s3Upload(file:'artifacts/game-0.0.1-SNAPSHOT.jar', bucket:'bharathvelisala', path:'sample/')
+            }
+    
        sshagent(['ed975733-0480-4c23-a8f3-4f0683ed2a43']){
                     sh 'ssh -o StrictHostKeyChecking=no ubuntu@13.127.138.117 pwd'
                     sh 'scp -r /var/jenkins_home/workspace/game-spring/artifacts/*.jar ubuntu@13.127.138.117:/home/ubuntu/artifacts'
