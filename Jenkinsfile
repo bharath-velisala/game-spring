@@ -67,7 +67,7 @@ pipeline{
       )
       
        sshagent(['ed975733-0480-4c23-a8f3-4f0683ed2a43']){
-                    sh 'ssh -o StrictHostKeyChecking=no ubuntu@13.127.138.117 pwd'
+                    sh 'ssh -o StrictHostKeyChecking=no ubuntu@13.127.138.117'
                     sh 'scp -r /var/jenkins_home/workspace/game-spring/artifacts/*.jar ubuntu@13.127.138.117:/home/ubuntu/artifacts'
         }
 
