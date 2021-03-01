@@ -18,7 +18,7 @@ pipeline{
             }
         }
 
-        /*stage('sonar analysis'){
+        stage('sonar analysis'){
             steps{
                 withSonarQubeEnv('SonarQube'){
                     withMaven(maven:'maven'){
@@ -27,7 +27,7 @@ pipeline{
                 }
             }
 
-        }*/
+        }
         stage('maven package'){
             steps{
                 sh 'mvn package'
