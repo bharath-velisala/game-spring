@@ -6,12 +6,6 @@ pipeline{
     tools{
         maven 'maven'
     }
-
-    environment{
-         AWS_REGION='ap-south-1'
-         AWS_DEFAULT_REGION='ap-south-1'
-     }
-
     stages{
         stage('maven clean'){
             steps{
@@ -72,7 +66,7 @@ pipeline{
               }"""
       )
       withAWS(region:'ap-south-1',credentials:'889f1bce-4edc-48a1-9f8a-d38a7ffb6af0') {
-                    s3Upload(file:'artifacts/game-0.0.1-SNAPSHOT.jar', bucket:'bharathvelisala', path:'sample/')
+                    s3Upload(file:'artifacts/game-0.0.1-SNAPSHOT.jar', bucket:'bharathvelisala', path:'artifacts/')
             }
     
        sshagent(['ed975733-0480-4c23-a8f3-4f0683ed2a43']){
