@@ -65,14 +65,16 @@ pipeline{
                ]
               }"""
       )
-      withAWS(region:'ap-south-1',credentials:'889f1bce-4edc-48a1-9f8a-d38a7ffb6af0') {
-                    s3Upload(file:'artifacts/game-0.0.1-SNAPSHOT.jar', bucket:'bharathvelisala', path:'artifacts/')
-            }
-    
+      
        sshagent(['ed975733-0480-4c23-a8f3-4f0683ed2a43']){
                     sh 'ssh -o StrictHostKeyChecking=no ubuntu@13.127.138.117 pwd'
                     sh 'scp -r /var/jenkins_home/workspace/game-spring/artifacts/*.jar ubuntu@13.127.138.117:/home/ubuntu/artifacts'
         }
+
+        withAWS(region:'ap-south-1',credentials:'889f1bce-4edc-48a1-9f8a-d38a7ffb6af0') {
+                    s3Upload(file:'artifacts/game-0.0.1-SNAPSHOT.jar', bucket:'bharathvelisala', path:'artifacts/')
+            }
+
             mail bcc: '', body: 'build was successful ', cc: '', from: '', replyTo: '', subject: 'build successful', to: 'bharath.velisala@gmail.com'
 
       }
